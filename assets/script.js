@@ -2,18 +2,23 @@
 
 function Armor(name, skills, defense, resist, slots) {
     this.name = name;
-    this.skills = [skills];
+    this.skills = skills;
     this.defense = defense;
-    this.resist = [resist];
+    this.resist = resist;
     this.slots = slots;
 }
+
+console.log (Armor);
+
 // HR Kamura 
 let kamuraHelm = new Armor
 ("Kamura Head Scarf S", 
 ["Divine Blessing x1", "Resuscitate x1"], 
 30,
 [2, 0, 0, 0, 0],
-"single one slot")
+"single one slot");
+
+console.log(kamuraHelm);
 
 let kamuraBody = new Armor("Kamura Garb S",
 ["Wirebug Whisperer x2", "Wall Runner x1", "Critical Eye x1"],
@@ -40,7 +45,10 @@ let kaumraLegs = new Armor("Kamura Leggings S",
 "single one slot")
 
 // HR Leather
-let leatherHelm = Armor("Leather Headgear S", ["Geologist x1", "Hunger Resistance x1"])
+let leatherHelm = new Armor("Leather Headgear S", ["Geologist x1", "Hunger Resistance x1"]);
+console.log(leatherHelm);
+//this console log is undefined because you didnt have 'new' on line 48
+
 let leatherBody = Armor("Leather Vest S", ["Botanist x1"])
 let leatherBrace = Armor("Leather Gloves S", ["Geologist x1", "Special Ammo Boost x1"])
 let leatherSkirt = Armor("Leather Belt S", ["Recovery Up x1", "Hunger Resistance x2"])
@@ -60,8 +68,10 @@ let chainLegs = Armor("Chainmail Pants S", ["Botanist x1", "Stamina Surge x1"])
 // updated idea: we do a function for each stat, and set them to run on the button press. Each function displays a different stat so they can each go into the proper text box- the biggest challenge will be sperating the array, but there i can just call it as obj.resists[0] for fire or whahtever
 
 function displayName(obj) {
+    console.log(obj);
     return obj.name;
 }
+ 
 
 function display_defense(obj) {
     let armor_defense = obj.defense;
@@ -103,13 +113,31 @@ function display_slots(obj) {
     return obj.slots;
 }
 
+// let kHelm = document.querySelector('[value=kamuraHelm]');
+// kHelm.onclick = function(){document.querySelector("helmName").innerHTML = "waffles"}; 
+
+//inside this function, you should do an if/else statement for the selected value from the dropdown.
 function getHelmet() {
     selectElement = document.querySelector('#helmets');
     output = selectElement.value;
+    console.log(output);
     // this returning as a str is the problem
-    return output;
+    // return output; this line doesnt do anything
+    if (output == "kamuraHelm") {
+        console.log (kamuraHelm)
+        return kamuraHelm
+    }
+    if (output == "leatherHelm") {
+        console.log (leatherHelm)
+        return leatherHelm
+    }
+     else {
+        console.log("butterfingers!!!")
+    }
+    
     }
     getHelmet()
+
 function helmet(){
     document.getElementById("helmName").innerHTML = displayName(getHelmet());
 }
